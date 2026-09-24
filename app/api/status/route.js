@@ -13,9 +13,9 @@ export async function GET(req) {
   try {
     let status = await storage.get('latest_status');
     const now = Date.now();
-    const CACHE_TTL_MS = 90000; // 90 seconds (1.5 minutes)
+    const CACHE_TTL_MS = 20000; // 20 seconds (matches ESP32 polling rate)
 
-    // Automatically refresh from Google Health if cache is missing or older than 90s
+    // Automatically refresh from Google Health if cache is missing or older than 20s
     if (!status || !status.ts || (now - status.ts > CACHE_TTL_MS)) {
       try {
         const fresh = await fetchAndComputeStatus();
