@@ -38,7 +38,23 @@ export async function GET(req) {
       });
     }
 
-    return Response.json(status);
+    // Attach scent config so ESP32 knows which channels to activate
+    let scentConfig = await storage.get('scent_config');
+    if (!scentConfig) {
+      scentConfig = {
+        elevated: { primary: 4, secondary: 5, intensity: 40 },
+        relaxed: { primary: 1, secondary: 5, intensity: 20 },
+        low_affect: { primary: 2, secondary: 3, intensity: 40 },
+        neutral: { primary: 0, secondary: 0, intensity: 0 },
+      };
+    }
+
+    const responsePayload = typeof status === 'object' ? { ...status } : status;
+    if (responsePayload && typeof responsePayload === 'object') {
+      responsePayload.scentConfig = scentConfig;
+    }
+
+    return Response.json(responsePayload);
   } catch (err) {
     return Response.json({ error: `Lookup failed: ${err.message}` }, { status: 500 });
   }

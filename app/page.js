@@ -57,6 +57,35 @@ export default function HomePage() {
           </li>
         </ul>
       </div>
+
+      <div style={{
+        backgroundColor: '#1e293b',
+        borderRadius: '12px',
+        padding: '24px',
+        marginTop: '24px',
+        border: '1px solid #334155'
+      }}>
+        <h2 style={{ fontSize: '1.3rem', marginTop: 0, color: '#f1f5f9' }}>&#x2697;&#xFE0F; Scent Formula Settings</h2>
+        <p style={{ color: '#cbd5e1', lineHeight: '1.6' }}>
+          Configure which scent channels activate for each emotional state (Elevated, Relaxed, Low Affect).
+          Adjust primary/secondary channel assignments and intensity levels.
+        </p>
+        <a
+          href="/settings"
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#6366f1',
+            color: '#ffffff',
+            padding: '12px 24px',
+            borderRadius: '8px',
+            textDecoration: 'none',
+            fontWeight: '600',
+            marginTop: '10px'
+          }}
+        >
+          Open Settings &#x2192;
+        </a>
+      </div>
     </main>
   );
 }
